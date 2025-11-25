@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/home_page';
 import { BrowserHelper } from '../utils/browser_util';
+import scenario from '../test-data/home_data.json';
 
 
 test.describe('Regression Test - Home Page', async () => {
@@ -9,11 +10,11 @@ test.describe('Regression Test - Home Page', async () => {
 		await page.goto('/');
 	});
 
-	test('TC01_Success to search video with Complete Key Phrase', async ({ page }) => {
+	test(scenario.TC01.title, async ({ page }) => {
 		const homePage = new HomePage(page);
 
 		// Test Data
-		const titleVideo = 'The Walters - Silver Screens [Visualizer]';
+		const titleVideo = scenario.TC01.data.title;
 
 		// Test Step
 		await homePage.searchbox.fillInputSearch(titleVideo);
@@ -21,7 +22,7 @@ test.describe('Regression Test - Home Page', async () => {
 
 		// Assert
 		await BrowserHelper.waitForPageLoadState(page);
-		await homePage.searchbox.assertSearchResultTitleVideoMatch(titleVideo, 4);
+		await homePage.searchbox.assertSearchResultTitleVideoMatch(titleVideo, 0);
 	});
 });
 

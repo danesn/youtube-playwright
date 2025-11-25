@@ -1,0 +1,11 @@
+{
+    "TC01": {
+        "title": "Success to search video with Complete Key Phrase",
+        "data": {
+            "title": "The Walters - Silver Screens [Visualizer]"
+        },
+        "expected": {
+            "title": "The Walters - Silver Screens [Visualizer]"
+        }
+    }
+}
