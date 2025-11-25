@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/home_page';
+import { BrowserHelper } from '../utils/browser_util';
 
 
 test.describe('Regression Test - Home Page', async () => {
@@ -12,17 +13,16 @@ test.describe('Regression Test - Home Page', async () => {
 		const homePage = new HomePage(page);
 
 		// Test Data
-		const titleVideo = 'The Walters - Silver Screens [Visualizer]'
+		const titleVideo = 'The Walters - Silver Screens [Visualizer]';
 
 		// Test Step
-		await homePage.fillInputSearch(titleVideo);
-		await homePage.clickBtnSearch();
+		await homePage.searchbox.fillInputSearch(titleVideo);
+		await homePage.searchbox.clickBtnSearch();
 
 		// Assert
-		await page.waitForLoadState();
-		await homePage.assertSearchResultTitleVideoMatch(titleVideo, 0);
+		await BrowserHelper.waitForPageLoadState(page);
+		await homePage.searchbox.assertSearchResultTitleVideoMatch(titleVideo, 4);
 	});
-
 });
 
 
