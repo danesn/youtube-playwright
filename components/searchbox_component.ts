@@ -41,11 +41,11 @@ export class SearchBoxComponent {
 
     // --- Assertion Function ---
     async assertSearchResultTitleVideoMatch(expectedTitleVideo: string, index: number) {
-        await expect(this.itemSectionRenderer).toBeVisible({ timeout: 5000 });
+        await expect(this.itemSectionRenderer).toBeVisible({ timeout: defaultTimeout });
         const firstElementVideoRenderer = this.videoRenderer.nth(index);
-        await expect(firstElementVideoRenderer).toBeVisible({ timeout: 5000 });
+        await expect(firstElementVideoRenderer).toBeVisible({ timeout: defaultTimeout });
         const elementTitleVideo = firstElementVideoRenderer.locator('#video-title');
-        await expect(elementTitleVideo).toBeVisible({ timeout: 5000 });
+        await expect(elementTitleVideo).toBeVisible({ timeout: defaultTimeout });
         const actualTitleVideo = await elementTitleVideo.innerText();
         expect(actualTitleVideo).toEqual(expectedTitleVideo);
     }
